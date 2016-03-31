@@ -1,0 +1,49 @@
+
+<html>
+<head>
+<title>Fibonacci Series</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+</head>
+<body>
+<h1>Fibonacci series</h1>
+<input type="text" id="txtInput">
+
+<div id="Result">
+</div>
+
+
+<script>
+$(document).ready(function() {
+
+    $("#txtInput").keyup(function() {
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    }).on("blur", function() {
+
+        var limit = $(this).val();
+        var FibSequence = fib(limit);
+
+        $("#Result").text(FibSequence.toString());
+    });
+});
+
+function fib(n) {
+    var res = [],
+        i = 0,
+        j = 1;
+    res.push(i);
+    res.push(j);
+    while (res.length <= n) {
+    	res.push(res[j] + res[i]);
+            j++;
+            i++;
+        if (res[res.length-1] >= n) {
+        	res.splice(res.length-1, 1);
+            break;
+        }
+    }
+    return res;
+}
+</script>
+</body>
+</html>
+
